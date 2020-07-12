@@ -4,7 +4,9 @@ function start() {
 function hide(){
 	document.getElementById("Date").innerHTML = ""
 }
-const selectedFile = document.getElementById('fileInput').files[0];
+
 function showFile(selectedFile){
+	var selectedFile = document.getElementById('fileInput').files[0];
 	document.getElementById("demo").innerHTML = selectedFile;	
 }
+console.log(selectedFile);
