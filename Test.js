@@ -7,7 +7,7 @@ function hide(){
 
 function showFile(selectedFile){
 	var selectedFile = document.getElementById('fileInput').files;
-	document.getElementById("demo").innerHTML = selectedFile.name;
+	document.getElementById("demo").innerHTML = selectedFile[0].name;
 	console.log(selectedFile);
 }
 console.log(selectedFile);
