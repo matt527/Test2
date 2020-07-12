@@ -4,3 +4,4 @@ function start() {
 function hide(){
 	document.getElementById("Date").innerHTML = ""
 }
+const selectedFile = document.getElementById('input').files[0];
