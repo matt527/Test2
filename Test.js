@@ -5,7 +5,7 @@ function hide(){
 	document.getElementById("Date").innerHTML = ""
 }
 
-var filename = function showFile(selectedFile){
+function showFile(){
 	var selectedFile = document.getElementById('fileInput').files;
 	document.getElementById("demo").innerHTML = selectedFile[0].name;
 	console.log(selectedFile);
