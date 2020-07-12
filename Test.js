@@ -11,7 +11,7 @@ var filename = function showFile(selectedFile){
 	console.log(selectedFile);
 	console.log(selectedFile[0].name)
 	const reader = new FileReader()
-	var textFromFile = reader.readAsText(selectedFile[0].name);
+	var textFromFile = reader.readAsText(selectedFile[0]);
 	console.log(textFromFile)
 	document.getElementById("fileContents").innerHTML = textFromFile
 }
