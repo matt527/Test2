@@ -31,11 +31,22 @@ function convert(fileContents){
 	dataList = fileContents.split(",")
 	console.log(dataList[0])
 }
-let xmlOutline = "Not Changed From Start";
+var points = "No file loaded yet.";
+var items = "No Items Generated"
 function parseCSV(fileContents,dataList){
 	console.log(typeof fileContents)
-	var points = fileContents.toString("/n")
-	console.log(points[0])
+	points = fileContents.split("\n")
+	console.log(points)
+	console.log(typeof points)
+	points.forEach((element,i) => {
+		points[i] = element.split(",");
+		console.log(element);
+		if (element.length===0){
+			console.log("Empty")
+			points.pop()
+		}
+	})
+	console.log(points)
 }
 
 function loadMap(){
