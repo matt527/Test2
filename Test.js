@@ -33,20 +33,33 @@ function logFile(tracks,filename,convert){
 var points = "No file loaded yet.";
 var items = "No Items Generated"
 var cicles = []
-var points=[]
+var points =[];
 function parseCSV(tracks,mymap){
-	for(track=0;track<tracks.length;track++){
+	var trackpoint = [];
+	var guideline = [];
+	for(let track=0;track<tracks.length;track++){
 		tracks[track] = tracks[track].split("\n")
-		for(point=0;point<tracks[track].length;point++){
+		for(let point=0;point<tracks[track].length;point++){
 			tracks[track][point] = tracks[track][point].split(",")
-			//console.log(tracks[track][point])
 			if(tracks[track][point][0]===""){
 				tracks[track].pop()
 			}
+			if(point!=tracks[track].length){
+			tracks[track][point].splice(1,1)
+			tracks[track][point].splice(3,4)
+			}
+		if(point!=tracks[track].length){
+			trackpoint = [tracks[track][point][0],tracks[track][point][1]]
+			console.log(trackpoint)
 		}
+		//guideline[track].push(trackpoint)
+		}
+		//polyline[track] = L.polyline(guideline[track]);
+		console.log(files[track].name)
+		console.log(track)
+		document.getElementById("csvLoaded").innerHTML = files[track].name
+		document.getElementById("parseProgress").innerHTML = `File ${track+1} of ${files.length}`
 		tracks[track].forEach((element,i) => {
-		element.splice(1,1)
-		element.splice(3,4)
 		if (!(i===0)){
 		L.circle([element[1], element[2]], {radius: 0.1,
 							  color: 'red',
@@ -82,7 +95,7 @@ function sum(data,pos){
 }
 
 function loadMap(){
-	mymap = L.map('mapid').setView([51.505, -0.09], 1);
+	mymap = L.map('mapid').setView([51.505, -0.09], 5);
 	L.tileLayer('https://tile.thunderforest.com/{id}/{z}/{x}/{y}.png?apikey={accessToken}', {
 		attribution: 'Map data &copy; <a href="https://www.thunderforest.com/">ThunderForest</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		maxZoom: 18,
