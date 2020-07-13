@@ -23,7 +23,13 @@ function fileAdded(){
   var reader = new FileReader();
   reader.readAsText(filename)
   reader.onload = function(){
-    console.log("File Loaded")
-	console.log(filename)
+  document.getElementById("demo").innerHTML = reader.result
+  var fileContents = reader.result 
+  return fileContents, filename
   };
+}
+
+function logFile(fileContents,filename){
+	console.log("Filename",filename)
+	console.log(fileContents)
 }
