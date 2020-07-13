@@ -31,11 +31,11 @@ function convert(fileContents){
 	dataList = fileContents.split(",")
 	console.log(dataList[0])
 }
-
+let xmlOutline = "Not Changed From Start";
 function parseGPX(fileContents,dataList){
 	console.log(typeof fileContents)
 	let parser = new DOMParser();
-	let xmlOutline = parser.parseFromString(fileContents,"text/xml");
+	xmlOutline = parser.parseFromString(fileContents,"text/xml");
 	console.log("Type of parser",typeof xmlOutline)
 }
 
