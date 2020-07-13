@@ -18,12 +18,12 @@ function showFile(){
 }
 
 function fileAdded(event){
-  var file = event.target.files[0];
+  var file = event.getElementById("fileInput").files[0];
   var filename = file.name
   var reader = new FileReader();
-  reader.onload = function(e) {
+  reader.readAsText(filename)
+  reader.onload = function(){
     console.log("File Loaded")
+	console.log(filename)
   };
-}
-  reader.readAsText(file);
 }
