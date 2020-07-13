@@ -20,7 +20,13 @@ function fileAdded(){
   };
 }
 
-function logFile(fileContents,filename){
+function logFile(fileContents,filename,convert){
 	console.log("Filename",filename)
 	console.log(fileContents)
+	convert(fileContents)
+}
+
+function convert(fileContents){
+	let dataList = fileContents.split(",")
+	console.log(dataList[0])
 }
