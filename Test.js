@@ -21,7 +21,7 @@ function fileAdded(){
   var file = document.getElementById("fileInput").files[0];
   var filename = file.name
   var reader = new FileReader();
-  reader.readAsText(filename)
+  reader.readAsText(file)
   reader.onload = function(){
   document.getElementById("demo").innerHTML = reader.result
   var fileContents = reader.result 
