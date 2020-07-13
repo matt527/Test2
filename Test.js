@@ -1,8 +1,8 @@
 function start() {
-	document.getElementById("Date").innerHTML = Date()
+	document.getElementById("date").innerHTML = Date()
 }
 function hide(){
-	document.getElementById("Date").innerHTML = ""
+	document.getElementById("date").innerHTML = ""
 }
 
 var filename = ""
