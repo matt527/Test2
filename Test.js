@@ -32,5 +32,13 @@ function convert(fileContents){
 	console.log(dataList[0])
 }
 function loadMap(){
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+	L.tileLayer('https://tile.thunderforest.com/{id}/{z}/{x}/{y}.png?apikey={accessToken}', {
+		attribution: 'Map data &copy; <a href="https://www.thunderforest.com/">ThunderForest</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		maxZoom: 18,
+		id: 'mobile-atlas',
+		tileSize: 512,
+		zoomOffset: -1,
+		accessToken: '63b250b2a28a4eb7aec69f27039c14aa'
+		}).addTo(mymap);
 }
