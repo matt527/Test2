@@ -36,7 +36,6 @@ function parseGPX(fileContents,dataList){
 	console.log(typeof fileContents)
 	let parser = new DOMParser();
 	let xmlOutline = parser.parseFromString(fileContents,"text/xml");
-	console.log
 	console.log("Type of parser",typeof xmlOutline)
 }
 
