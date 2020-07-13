@@ -26,14 +26,14 @@ function logFile(fileContents,filename,convert){
 	console.log(fileContents)
 	convert(fileContents)
 }
-
+let dataList;
 function convert(fileContents){
-	let dataList = fileContents.split(",")
+	dataList = fileContents.split(",")
 	console.log(dataList[0])
 }
 
-function parseGPX(fileContents){
-	console.log(typeof fileContents)
+function parseGPX(fileContents,dataList){
+	console.log(typeof fileContents, typeof dataList[0])
 }
 
 function loadMap(){
