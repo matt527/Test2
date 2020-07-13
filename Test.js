@@ -33,7 +33,7 @@ function convert(fileContents){
 }
 
 function parseGPX(fileContents){
-	console.log(typeof 3)
+	console.log(typeof fileContents)
 }
 
 function loadMap(){
