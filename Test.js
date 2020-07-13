@@ -25,10 +25,6 @@ function fileAdded(){
   }
 };
 
-function logTracks(tracks){
-	console.log("::Number of Files: "+tracks.length)
-}
-
 function logFile(tracks,filename,convert){
   console.log("Filename",filename)
   console.log(fileContents)
@@ -37,20 +33,18 @@ function logFile(tracks,filename,convert){
 var points = "No file loaded yet.";
 var items = "No Items Generated"
 var cicles = []
-function parseCSV(fileContents,dataList,mymap,files){
-	//console.log(typeof fileContents)
-	points = fileContents.split("\n")
-	//console.log(points)
-	//console.log(typeof points)
-	points.forEach((element,i) => {
-		points[i] = element.split(",");
-		//console.log(element);
-		if (element.length===0){
-			console.log("Empty")
-			points.pop()
+var points=[]
+function parseCSV(tracks,mymap){
+	for(track=0;track<tracks.length;track++){
+		tracks[track] = tracks[track].split("\n")
+		for(point=0;point<tracks[track].length;point++){
+			tracks[track][point] = tracks[track][point].split(",")
+			//console.log(tracks[track][point])
+			if(tracks[track][point][0]===""){
+				tracks[track].pop()
+			}
 		}
-	})
-	points.forEach((element,i) => {
+		tracks[track].forEach((element,i) => {
 		element.splice(1,1)
 		element.splice(3,4)
 		if (!(i===0)){
@@ -58,35 +52,37 @@ function parseCSV(fileContents,dataList,mymap,files){
 							  color: 'red',
 							  fillColor: 'red',
     						  fillOpacity: 1}).addTo(mymap);
+		points.push(element)
 		}
-	});
-	console.log(points)
+		});
+	}
 }
+
 var mymap="";
 function recentreMap(points,mymap,sum){
 	var sumLat = sum(points, 1)
-	console.log("Sum Latitude: "+sumLat)
+	//console.log("Sum Latitude: "+sumLat)
 	var aveLat = sumLat/(points.length-1)
 	var sumLon = sum(points, 2)
 	var aveLon = sumLon/(points.length-1)
-	console.log(aveLat)
-	console.log(aveLon)
-	mymap.setView([aveLat,aveLon],12);
+	//console.log(aveLat)
+	//console.log(aveLon)
+	mymap.setView([aveLat,aveLon],5);
 	}
 
 function sum(data,pos){
 	var sum = 0
 	for(let i=1;i<data.length;i++){
-		console.log("Length " + data.length)
-		console.log("i: " + i)
-		console.log(data[i][pos])
+		//console.log("Length " + data.length)
+		//console.log("i: " + i)
+		//console.log(data[i][pos])
 		sum += +(data[i][pos])
 	}
 	return sum
 }
 
 function loadMap(){
-	mymap = L.map('mapid').setView([51.505, -0.09], 13);
+	mymap = L.map('mapid').setView([51.505, -0.09], 1);
 	L.tileLayer('https://tile.thunderforest.com/{id}/{z}/{x}/{y}.png?apikey={accessToken}', {
 		attribution: 'Map data &copy; <a href="https://www.thunderforest.com/">ThunderForest</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		maxZoom: 18,
