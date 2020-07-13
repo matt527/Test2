@@ -31,6 +31,11 @@ function convert(fileContents){
 	let dataList = fileContents.split(",")
 	console.log(dataList[0])
 }
+
+function parseGPX(fileContents){
+	console.log(fileContents.typeof)
+}
+
 function loadMap(){
 	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 	L.tileLayer('https://tile.thunderforest.com/{id}/{z}/{x}/{y}.png?apikey={accessToken}', {
