@@ -15,6 +15,6 @@ function showFile(){
 	var textFromFile = reader.result
 	console.log(textFromFile)
 	console.log("File Contents")
-	console.log(reader.result)
+	console.log(reader)
 	document.getElementById("fileContents").innerHTML = textFromFile
 }
