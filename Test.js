@@ -31,5 +31,6 @@ function convert(fileContents){
 	let dataList = fileContents.split(",")
 	console.log(dataList[0])
 }
-
+function loadMap(){
 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+}
