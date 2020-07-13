@@ -17,8 +17,8 @@ function showFile(){
 						 }, 1000);
 }
 
-function fileAdded(event){
-  var file = event.getElementById("fileInput").files[0];
+function fileAdded(){
+  var file = document.getElementById("fileInput").files[0];
   var filename = file.name
   var reader = new FileReader();
   reader.readAsText(filename)
