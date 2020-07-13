@@ -23,8 +23,11 @@ function fileAdded(){
 	  	  tracks[index] = readers[index].result 
 	  }	 
   }
-  console.log("Number of Files: "+tracks.length)
 };
+
+function logTracks(tracks){
+	console.log("::Number of Files: "+tracks.length)
+}
 
 function logFile(tracks,filename,convert){
   console.log("Filename",filename)
