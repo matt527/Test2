@@ -5,36 +5,36 @@ function hide(){
 	document.getElementById("date").innerHTML = ""
 }
 
-var filename = ""
-var fileContents = ""
-
+var files=[]
+var tracks=[];
+var readers=[];
 function fileAdded(){
-  var file = document.getElementById("fileInput").files[0];
-  filename = file.name
-  var reader = new FileReader();
-  reader.readAsText(file)
-  reader.onload = function(){
-	document.getElementById("filename").innerHTMl = filename  
-	document.getElementById("fileContents").innerHTML = "File Loaded"
-	fileContents = reader.result 
-	return fileContents, filename
-  };
-}
+  files = document.getElementById("fileInput").files;
+  let reader;
+  for(let index=0; index<files.length;index++){
+	  console.log(index)
+	  readers[index] = new FileReader()
+	  console.log("File Reader Made: "+ index)
+	  readers[index].readAsText(files[index])
+	//  console.log(readers[index].readyState)
+	  readers[index].onload = function(){
+		  document.getElementById("filename").innerHTMl = filename  
+		  document.getElementById("fileContents").innerHTML = `File ${index+1} of ${files.length}`
+	  	  tracks[index] = readers[index].result 
+	  }	 
+  }
+  console.log("Number of Files: "+tracks.length)
+};
 
-function logFile(fileContents,filename,convert){
+function logFile(tracks,filename,convert){
   console.log("Filename",filename)
   console.log(fileContents)
   convert(fileContents)
 }
-let dataList;
-function convert(fileContents){
-	dataList = fileContents.split(",")
-	console.log(dataList[0])
-}
 var points = "No file loaded yet.";
 var items = "No Items Generated"
 var cicles = []
-function parseCSV(fileContents,dataList,mymap){
+function parseCSV(fileContents,dataList,mymap,files){
 	//console.log(typeof fileContents)
 	points = fileContents.split("\n")
 	//console.log(points)
@@ -51,7 +51,7 @@ function parseCSV(fileContents,dataList,mymap){
 		element.splice(1,1)
 		element.splice(3,4)
 		if (!(i===0)){
-		L.circle([element[1], element[2]], {radius: 0.5,
+		L.circle([element[1], element[2]], {radius: 0.1,
 							  color: 'red',
 							  fillColor: 'red',
     						  fillOpacity: 1}).addTo(mymap);
@@ -61,16 +61,25 @@ function parseCSV(fileContents,dataList,mymap){
 }
 var mymap="";
 function recentreMap(points,mymap,sum){
-	var sumLat = sum(points[0])
-	console.log(sumLat)
+	var sumLat = sum(points, 1)
+	console.log("Sum Latitude: "+sumLat)
+	var aveLat = sumLat/(points.length-1)
+	var sumLon = sum(points, 2)
+	var aveLon = sumLon/(points.length-1)
+	console.log(aveLat)
+	console.log(aveLon)
+	mymap.setView([aveLat,aveLon],12);
 	}
 
-}
-
-function sum(data){
-	for(i;i<data.length,i++){
-		console.log(i)
+function sum(data,pos){
+	var sum = 0
+	for(let i=1;i<data.length;i++){
+		console.log("Length " + data.length)
+		console.log("i: " + i)
+		console.log(data[i][pos])
+		sum += +(data[i][pos])
 	}
+	return sum
 }
 
 function loadMap(){
