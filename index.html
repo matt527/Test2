@@ -12,17 +12,20 @@
 	</head>
 <body>
 <button type="button" onclick="start()" class="btn btn-primary">Show Date</button>
-		<br>
+<br>
 <button type="button" onclick="hide()" class="btn btn-primary">Hide Date</button>
-		<br>
+<br>
 <button type="button" onclick="logFile(fileContents,filename,convert)" class="btn btn-primary">Log File Contents</button>
-		<br>
+<br>
 <button type="button" onclick="loadMap()" class="btn btn-primary">Load Map</button>
-		<br>
-<input type="file" id="fileInput" onchange="fileAdded()">
+<br>
+<button type="button" onclick="parseGPX()" class="btn btn-primary">ParseGPX</button>
+<br>
+<input type="file" id="fileInput" onchange="fileAdded()"></input>
+
 <p id="filename">No File Selected</p>
-	<p id="date">Date Not Shown</p>
-	<p id="fileContents">Not Loaded Yet</p>
+<p id="date">Date Not Shown</p>
+<p id="fileContents">Not Loaded Yet</p>
 <div id="mapid">Map Not Loaded Yet</div>
 </body>
 </html>
