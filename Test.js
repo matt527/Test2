@@ -16,3 +16,14 @@ function showFile(){
 						 document.getElementById("fileContents").innerHTML = reader.result
 						 }, 1000);
 }
+
+function fileAdded(event) {
+  var file = event.target.files[0];
+  var filename = file.name
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    console.log("File Loaded")
+  };
+
+  reader.readAsText(file);
+}
