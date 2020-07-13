@@ -11,8 +11,8 @@ function showFile(){
 	console.log(selectedFile);
 	console.log(selectedFile[0].name)
 	const reader = new FileReader()
-	const reader = new FileReader()
 	reader.readAsText(selectedFile[0]);
-	setTimeout(function(){console.log(reader.result)}, 1000);
-	document.getElementById("fileContents").innerHTML = reader.result
+	setTimeout(function(){console.log(reader.result)
+						 document.getElementById("fileContents").innerHTML = reader.result
+						 }, 1000);
 }
