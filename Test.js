@@ -14,8 +14,9 @@ function fileAdded(){
   var reader = new FileReader();
   reader.readAsText(file)
   reader.onload = function(){
-  document.getElementById("demo").innerHTML = reader.result
-  fileContents = reader.result 
+	document.getElementById("filename").innerHTMl = filename  
+  	document.getElementById("fileContents").innerHTML = reader.result
+  	fileContents = reader.result 
   return fileContents, filename
   };
 }
