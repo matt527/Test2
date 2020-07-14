@@ -101,7 +101,7 @@ function loadMap(){
 	L.tileLayer('https://tile.thunderforest.com/{id}/{z}/{x}/{y}.png?apikey={accessToken}', {
 		attribution: 'Map data &copy; <a href="https://www.thunderforest.com/">ThunderForest</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		maxZoom: 18,
-		id: 'neighbourhood',
+		id: 'mobile-atlas',
 		accessToken: '63b250b2a28a4eb7aec69f27039c14aa'
 		}).addTo(mymap);
 }
@@ -110,8 +110,8 @@ function screenshot(mymap){
 	mymap.zoomControl.remove();
 	var useWidth = document.getElementById("mapid").offsetWidth;
 	var useHeight = document.getElementById("mapid").offsetHeight;
-	html2canvas(document.getElementById("mapid"),{useCORS: true, width: 400,
-    height: 600,}).then(function(canvas) {
+	html2canvas(document.getElementById("mapid"),{useCORS: true, width: 2000,
+    height: 3000,}).then(function(canvas) {
     let screencontent = new Image()
 	screencontent.src = canvas.toDataURL('image/jpeg', 1.0);
 	console.log(screencontent)
