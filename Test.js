@@ -107,12 +107,25 @@ function loadMap(){
 }
 
 function screenshot(mymap){
-	html2canvas(document.getElementById("mapid"),{useCORS: true, width: 400px, height: 600px}).then(function(canvas) {
+	mymap.zoomControl.remove();
+	var useWidth = document.getElementById("mapid").offsetWidth;
+	var useHeight = document.getElementById("mapid").offsetHeight;
+	html2canvas(document.getElementById("mapid"),{useCORS: true, width: useWidth,
+    height: useHeight,}).then(function(canvas) {
     let screencontent = new Image()
 	screencontent.src = canvas.toDataURL('image/jpeg', 1.0);
 	console.log(screencontent)
 	console.log("Screenshot")
 	var w = window.open("");
     w.document.write(screencontent.outerHTML);
+	var btn = w.document.createElement("Button")
+	btn.innerHTML = "CLICK ME";
+	function saveFile(){
+		w.console.log("Image Source")
+		w.console.log(screencontent.src)
+	}
+	btn.onclick = saveFile
+	w.document.body.appendChild(btn);  
    });
+	new L.Control.Zoom({ position: 'topleft' }).addTo(mymap);
 }
