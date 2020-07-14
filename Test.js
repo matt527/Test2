@@ -12,9 +12,9 @@ function fileAdded(){
   files = document.getElementById("fileInput").files;
   let reader;
   for(let index=0; index<files.length;index++){
-	  console.log(index)
+	  //console.log(index)
 	  readers[index] = new FileReader()
-	  console.log("File Reader Made: "+ index)
+	  //console.log("File Reader Made: "+ index)
 	  readers[index].readAsText(files[index])
 	//  console.log(readers[index].readyState)
 	  readers[index].onload = function(){
@@ -25,11 +25,6 @@ function fileAdded(){
   }
 };
 
-function logFile(tracks,filename,convert){
-  console.log("Filename",filename)
-  console.log(fileContents)
-  convert(fileContents)
-}
 var points = "No file loaded yet.";
 var items = "No Items Generated"
 var cicles = []
@@ -37,8 +32,12 @@ var points =[];
 function parseCSV(tracks,mymap){
 	var trackpoint = [];
 	var guideline = [];
+	var singleLine=[];
+	var polyline=[];
+	var outputLine=[];
 	for(let track=0;track<tracks.length;track++){
 		tracks[track] = tracks[track].split("\n")
+		singleLine=[]
 		for(let point=0;point<tracks[track].length;point++){
 			tracks[track][point] = tracks[track][point].split(",")
 			if(tracks[track][point][0]===""){
@@ -48,18 +47,26 @@ function parseCSV(tracks,mymap){
 			tracks[track][point].splice(1,1)
 			tracks[track][point].splice(3,4)
 			}
-		if(point!=tracks[track].length){
-			trackpoint = [tracks[track][point][0],tracks[track][point][1]]
-			console.log(trackpoint)
+		if(point!=tracks[track].length&&point!=0){
+			trackpoint = [tracks[track][point][1],tracks[track][point][2]]
+		//	console.log(trackpoint)
 		}
-		//guideline[track].push(trackpoint)
+		singleLine.push(trackpoint)
+		points.push(trackpoint)
 		}
-		//polyline[track] = L.polyline(guideline[track]);
-		console.log(files[track].name)
-		console.log(track)
+		singleLine.splice(0,1)
+		guideline.push(singleLine)
+		outputLine[track]= new L.polyline(guideline[track])
+		outputLine[track].addTo(mymap)
+		//console.log(singleLine)
+		//console.log(singleLine.length)
+		//console.log(guideline)
+		//console.log(guideline[track])
+		//console.log(files[track].name)
+		//console.log(track)
 		document.getElementById("csvLoaded").innerHTML = files[track].name
 		document.getElementById("parseProgress").innerHTML = `File ${track+1} of ${files.length}`
-		tracks[track].forEach((element,i) => {
+		/*tracks[track].forEach((element,i) => {
 		if (!(i===0)){
 		L.circle([element[1], element[2]], {radius: 0.1,
 							  color: 'red',
@@ -67,16 +74,17 @@ function parseCSV(tracks,mymap){
     						  fillOpacity: 1}).addTo(mymap);
 		points.push(element)
 		}
-		});
+		});*/
+		
 	}
 }
 
 var mymap="";
 function recentreMap(points,mymap,sum){
-	var sumLat = sum(points, 1)
+	var sumLat = sum(points, 0)
 	//console.log("Sum Latitude: "+sumLat)
 	var aveLat = sumLat/(points.length-1)
-	var sumLon = sum(points, 2)
+	var sumLon = sum(points, 1)
 	var aveLon = sumLon/(points.length-1)
 	//console.log(aveLat)
 	//console.log(aveLon)
