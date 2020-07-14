@@ -117,19 +117,20 @@ function screenshot(mymap){
 	console.log(screencontent)
 	console.log("Screenshot")
 	var w = window.open()
-	w.document.write("<html><head><title>Matts Website</title><link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'><script src='Test.js'></script><style>#mapid{ height: 600px; width:400px;}</style></head><body id='ImageLocation'></body></html>");
-	//w.document.write(screencontent.outerHTML);
-	var image = w.document.createElement("img")
-	image.src = screencontent.src
-	w.console.log(image)
-	w.document.write(image.outerHTML)
-	var saveButton = w.document.createElement("Button")
-	saveButton.innerHTML = "Save";
-    saveButton.className = "btn btn-primary";
-	saveButton.href =screencontent.src
-	saveButton.download = "TestFile";
-	saveButton.onclick = saveFile()
-	function saveFile(){
+	//w.document.getElementsByTagName( "head" )[0].innerHTML="<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'>"
+	//w.document.write("<html><head><title>Matts Website</title><link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'><script src='Test.js'></script><style>#mapid{ height: 600px; width:400px;}</style></head><body id='ImageLocation'></body></html>");
+	w.document.write(screencontent.outerHTML);
+	var stylish = document.createElement("link")
+	stylish.rel="stylesheet"
+	stylish.href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	w.document.head.appendChild(stylish)
+	var btn = document.createElement("BUTTON");
+	btn.innerHTML="Save"
+	btn.className="btn btn-primary"
+	btn.onclick= production
+	w.document.body.appendChild(btn);
+	function production(){
+		w.console.log("Button Clicked")
 		w.console.log("Image Source")
 		w.console.log(screencontent.src)
 		w.console.log("Download Function Started")
@@ -139,8 +140,7 @@ function screenshot(mymap){
   		a.click();
 		w.console.log("Download")
 	}
-	w.document.write(saveButton.outerHTML);
-	}) 
+	})
 	new L.Control.Zoom({ position: 'topleft' }).addTo(mymap);
 }
 
