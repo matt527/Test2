@@ -114,7 +114,10 @@ function loadMap(){
 
 function screenshot(){
 	html2canvas(document.getElementById("mapid")).then(function(canvas) {
-    let screencontent = canvas.toDataURL('image/jpeg', 1.0);
+    let screencontent = new Image()
+	screencontent.src = canvas.toDataURL('image/jpeg', 1.0);
+	console.log(screencontent)
+	console.log("Screenshot")
 	var w = window.open("");
     w.document.write(screencontent.outerHTML);
    });
