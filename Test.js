@@ -29,7 +29,7 @@ var points = "No file loaded yet.";
 var items = "No Items Generated"
 var cicles = []
 var points =[];
-function parseCSV(tracks,mymap){
+function parseCSV(tracks,mymap,files){
 	var trackpoint = [];
 	var guideline = [];
 	var singleLine=[];
@@ -88,7 +88,7 @@ function recentreMap(points,mymap,sum){
 	var aveLon = sumLon/(points.length-1)
 	//console.log(aveLat)
 	//console.log(aveLon)
-	mymap.setView([aveLat,aveLon],5);
+	mymap.setView([aveLat,aveLon],10);
 	}
 
 function sum(data,pos){
@@ -111,3 +111,11 @@ function loadMap(){
 		accessToken: '63b250b2a28a4eb7aec69f27039c14aa'
 		}).addTo(mymap);
 }
+
+function screenshot(){
+	html2canvas(document.getElementById("mapid")).then(function(canvas) {
+    let screencontent = canvas.toDataURL('image/jpeg', 1.0);
+	var w = window.open("");
+    w.document.write(screencontent.outerHTML);
+   });
+};
