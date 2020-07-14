@@ -58,12 +58,6 @@ function parseCSV(tracks,mymap,files){
 		guideline.push(singleLine)
 		outputLine[track]= new L.polyline(guideline[track])
 		outputLine[track].addTo(mymap)
-		//console.log(singleLine)
-		//console.log(singleLine.length)
-		//console.log(guideline)
-		//console.log(guideline[track])
-		//console.log(files[track].name)
-		//console.log(track)
 		document.getElementById("csvLoaded").innerHTML = files[track].name
 		document.getElementById("parseProgress").innerHTML = `File ${track+1} of ${files.length}`
 		/*tracks[track].forEach((element,i) => {
@@ -107,13 +101,13 @@ function loadMap(){
 	L.tileLayer('https://tile.thunderforest.com/{id}/{z}/{x}/{y}.png?apikey={accessToken}', {
 		attribution: 'Map data &copy; <a href="https://www.thunderforest.com/">ThunderForest</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		maxZoom: 18,
-		id: 'mobile-atlas',
+		id: 'neighbourhood',
 		accessToken: '63b250b2a28a4eb7aec69f27039c14aa'
 		}).addTo(mymap);
 }
 
 function screenshot(mymap){
-	html2canvas(document.getElementById("body")).then(function(canvas) {
+	html2canvas(document.getElementById("mapid"),{useCORS: true, width: 400px, height: 600px}).then(function(canvas) {
     let screencontent = new Image()
 	screencontent.src = canvas.toDataURL('image/jpeg', 1.0);
 	console.log(screencontent)
