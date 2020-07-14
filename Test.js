@@ -116,16 +116,34 @@ function screenshot(mymap){
 	screencontent.src = canvas.toDataURL('image/jpeg', 1.0);
 	console.log(screencontent)
 	console.log("Screenshot")
-	var w = window.open("");
-    w.document.write(screencontent.outerHTML);
-	var btn = w.document.createElement("Button")
-	btn.innerHTML = "CLICK ME";
+	var w = window.open()
+	w.document.write("<html><head><title>Matts Website</title><link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'><script src='Test.js'></script><style>#mapid{ height: 600px; width:400px;}</style></head><body id='ImageLocation'></body></html>");
+	//w.document.write(screencontent.outerHTML);
+	var image = w.document.createElement("img")
+	image.src = screencontent.src
+	w.console.log(image)
+	w.document.write(image.outerHTML)
+	var saveButton = w.document.createElement("Button")
+	saveButton.innerHTML = "Save";
+    saveButton.className = "btn btn-primary";
+	saveButton.href =screencontent.src
+	saveButton.download = "TestFile";
+	saveButton.onclick = saveFile()
 	function saveFile(){
 		w.console.log("Image Source")
 		w.console.log(screencontent.src)
+		w.console.log("Download Function Started")
+	    var a = document.createElement("a");
+		a.href = screencontent.src;
+		a.setAttribute("download", "Test123456");
+  		a.click();
+		w.console.log("Download")
 	}
-	btn.onclick = saveFile
-	w.document.body.appendChild(btn);  
-   });
+	w.document.write(saveButton.outerHTML);
+	}) 
 	new L.Control.Zoom({ position: 'topleft' }).addTo(mymap);
+}
+
+function newWindow(){
+	var newWin=window.open("./map.html")
 }
