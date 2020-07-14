@@ -110,8 +110,8 @@ function screenshot(mymap){
 	mymap.zoomControl.remove();
 	var useWidth = document.getElementById("mapid").offsetWidth;
 	var useHeight = document.getElementById("mapid").offsetHeight;
-	html2canvas(document.getElementById("mapid"),{useCORS: true, width: useWidth,
-    height: useHeight,}).then(function(canvas) {
+	html2canvas(document.getElementById("mapid"),{useCORS: true, width: 400,
+    height: 600,}).then(function(canvas) {
     let screencontent = new Image()
 	screencontent.src = canvas.toDataURL('image/jpeg', 1.0);
 	console.log(screencontent)
@@ -141,7 +141,7 @@ function screenshot(mymap){
 		w.console.log("Download")
 	}
 	})
-	new L.Control.Zoom({ position: 'topleft' }).addTo(mymap);
+	//zoomcontroller = new L.Control.Zoom({ position: 'topleft' }).addTo(mymap);
 }
 
 function newWindow(){
