@@ -112,8 +112,8 @@ function loadMap(){
 		}).addTo(mymap);
 }
 
-function screenshot(){
-	html2canvas(document.getElementById("mapid")).then(function(canvas) {
+function screenshot(mymap){
+	html2canvas(document.getElementById("body")).then(function(canvas) {
     let screencontent = new Image()
 	screencontent.src = canvas.toDataURL('image/jpeg', 1.0);
 	console.log(screencontent)
@@ -121,4 +121,4 @@ function screenshot(){
 	var w = window.open("");
     w.document.write(screencontent.outerHTML);
    });
-};
+}
