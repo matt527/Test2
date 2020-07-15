@@ -56,7 +56,7 @@ function parseCSV(tracks,mymap,files){
 		}
 		singleLine.splice(0,1)
 		guideline.push(singleLine)
-		outputLine[track]= new L.polyline(guideline[track])
+		outputLine[track]= new L.polyline(guideline[track],{color:"#FC4E05"})
 		outputLine[track].addTo(mymap)
 		document.getElementById("csvLoaded").innerHTML = files[track].name
 		document.getElementById("parseProgress").innerHTML = `File ${track+1} of ${files.length}`
@@ -101,6 +101,7 @@ function loadMap(){
 	L.tileLayer('https://tile.thunderforest.com/{id}/{z}/{x}/{y}.png?apikey={accessToken}', {
 		attribution: 'Map data &copy; <a href="https://www.thunderforest.com/">ThunderForest</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		maxZoom: 18,
+		zoomSnap: 0,
 		id: 'mobile-atlas',
 		accessToken: '63b250b2a28a4eb7aec69f27039c14aa'
 		}).addTo(mymap);
@@ -110,8 +111,8 @@ function screenshot(mymap){
 	mymap.zoomControl.remove();
 	var useWidth = document.getElementById("mapid").offsetWidth;
 	var useHeight = document.getElementById("mapid").offsetHeight;
-	html2canvas(document.getElementById("mapid"),{useCORS: true, width: 2000,
-    height: 3000,}).then(function(canvas) {
+	html2canvas(document.getElementById("mapid"),{useCORS: true, width: 3000,
+    height: 4500,}).then(function(canvas) {
     let screencontent = new Image()
 	screencontent.src = canvas.toDataURL('image/jpeg', 1.0);
 	console.log(screencontent)
